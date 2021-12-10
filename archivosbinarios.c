@@ -18,19 +18,24 @@ int main ()
 
     int i;
     float prom;
-    calificacion=fopen("ejercicio.dat", "wb");//los crea
+    calificacion=fopen("ejercicio.dat", "wb");
+    int alumnos;
+    float sumapromedio;
 
 
     for (i=0; i<5; i++)
     {
         printf("dame el nombre de un alumno");
         scanf ("%s", promedio.alumnos);
+        alumnos++;
         printf("dame la calificacion");
         scanf("%f", &promedio.calificaciones);
-
-        fwrite(&promedio, sizeof(Promedio), 1, calificacion );
-
     }
+
+
+        sumapromedio=sumapromedio+promedio.calificaciones;
+        prom=alumnos/promedio.calificaciones;
+    fwrite(&promedio, sizeof(Promedio), 1, calificacion );
 
     fclose(calificacion);
     
@@ -57,7 +62,7 @@ int main ()
     calificacion=fopen("ejercicio.dat","rb+");
     
 
-    fseek(calificacion,sizeof(Promedio),SEEK_SET);//para leer solo un nombre 
+    fseek(calificacion,sizeof(Promedio),SEEK_SET);
     fread(&calificacionLeido, sizeof(Promedio),1,calificacion);
     fwrite(&calificacion,sizeof(Promedio),1,calificacion);
     fclose(calificacion);
