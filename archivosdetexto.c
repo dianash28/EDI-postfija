@@ -5,6 +5,8 @@
  {
     float calificacion;
     char alumno[20];
+    float promedio;
+
  };
  typedef struct struct_calificacion  calificacion;
 
@@ -16,8 +18,8 @@ int main()
 
     int cerrado;
     int i;
-    float promedio=0;
-   
+    float sumapromedio=0;
+   int alumnos;
     FILE *calificaciones;
     calificaciones=fopen("ejercicio.txt", "r");
     calificaciones=fopen("ejercicio.txt", "w");//los crea
@@ -28,30 +30,28 @@ int main()
     {
         printf("dame el nombre del alumno");
         scanf("%s",calificacion.alumno);
+        alumnos++;
 
         printf("dame las calificaciones");
         scanf("%d",&calificacion.calificacion );
 
-        promedio=promedio+calificacion.calificacion;
+        sumapromedio=sumapromedio+calificacion.calificacion;
+
     
-        fprintf(calificaciones, "%s alumno %d  calificacion \n", calificacion.alumno, calificacion.calificacion);
-        fprintf(calificaciones,"%f promedio", promedio);
+        
 
     }
-    //cerrado=fclose(calificaciones);
+        calificacion.promedio=alumnos/sumapromedio;
+        fprintf(calificaciones, "%s alumno %d  calificacion \n", calificacion.alumno, calificacion.calificacion);
+        fprintf(calificaciones,"%f promedio", calificacion.promedio);
 
-    //for (i=0; i<2; i++)
-    //{
-      //  fscanf(calificaciones, "%s", calificacion.alumno);
-        //fscanf(calificaciones, "%d", &calificacion.calificacion);
-    //}
+    cerrado=fclose(calificaciones);
 
-    //promedio=promedio+calificacion.calificacion[i];
-    //printf("el promedio final del grupo es:");
-    //fscanf(calificaciones,"%f", promedio);
-    cerrado=fclose(calificaciones);//es para cerrar
+    
 
-    if (cerrado==EOF)//utilizar para cuando no se cierra correctamente
+    cerrado=fclose(calificaciones);
+
+    if (cerrado==EOF)
     {
         printf("el archivo no cerro con exito");
     }
